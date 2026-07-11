@@ -1,0 +1,124 @@
+:root {
+  --color-bg: #f5f7fa;
+  --color-card: #ffffff;
+  --color-text: #1f2933;
+  --color-accent: #2e86ab;
+  --color-temp: #e4572e;
+  --color-humidity: #2e86ab;
+  --color-battery: #4c9a2a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Yu Gothic UI", "Segoe UI", sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+header {
+  padding: 1.5rem 1rem 0.5rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+}
+
+.last-updated {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #616e7c;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.current-values {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: var(--color-card);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem 2rem;
+  text-align: center;
+  min-width: 140px;
+}
+
+.card .label {
+  display: block;
+  font-size: 0.85rem;
+  color: #616e7c;
+  margin-bottom: 0.25rem;
+}
+
+.card .value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.card .unit {
+  font-size: 1rem;
+  margin-left: 0.15rem;
+}
+
+.card.temperature .value {
+  color: var(--color-temp);
+}
+
+.card.humidity .value {
+  color: var(--color-humidity);
+}
+
+.card.battery .value {
+  color: var(--color-battery);
+}
+
+.chart-section {
+  background: var(--color-card);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+}
+
+.range-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.range-buttons button {
+  border: 1px solid var(--color-accent);
+  background: var(--color-card);
+  color: var(--color-accent);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.range-buttons button.active {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9aa5b1;
+  padding: 1.5rem 1rem;
+}
