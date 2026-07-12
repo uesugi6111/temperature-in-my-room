@@ -4,5 +4,11 @@
     "temperature": 25,
     "humidity": 53,
     "battery": 100
+  },
+  {
+    "timestamp": "2026-07-12T15:14:09+09:00",
+    "temperature": 24.2,
+    "humidity": 55,
+    "battery": 100
   }
 ]
