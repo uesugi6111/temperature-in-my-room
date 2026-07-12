@@ -8,9 +8,9 @@ const els = {
 };
 
 const RANGE_CONFIG = {
-  "24h": { hours: 24, unit: "hour", maxPoints: 300 },
-  "7d": { hours: 24 * 7, unit: "day", maxPoints: 400 },
-  "30d": { hours: 24 * 30, unit: "day", maxPoints: 500 },
+  "24h": { hours: 24, unit: "hour", maxPoints: 300, source: "raw" },
+  "7d": { hours: 24 * 7, unit: "day", maxPoints: 400, source: "summary" },
+  "30d": { hours: 24 * 30, unit: "day", maxPoints: 500, source: "summary" },
 };
 
 let chart = null;
@@ -27,6 +27,18 @@ async function fetchJson(path) {
     throw new Error(`fetch failed: ${path} (${res.status})`);
   }
   return res.json();
+}
+
+async function fetchNdjson(path) {
+  const res = await fetch(`${path}?_=${Date.now()}`, { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error(`fetch failed: ${path} (${res.status})`);
+  }
+  const text = await res.text();
+  return text
+    .split("\n")
+    .filter((line) => line.trim() !== "")
+    .map((line) => JSON.parse(line));
 }
 
 async function loadCurrent() {
@@ -54,19 +66,32 @@ function monthsBetween(start, end) {
 }
 
 async function loadHistory(range) {
-  const { hours } = RANGE_CONFIG[range];
+  const { hours, source } = RANGE_CONFIG[range];
   const now = new Date();
   const from = new Date(now.getTime() - hours * 60 * 60 * 1000);
-  const months = monthsBetween(from, now);
 
-  const results = await Promise.allSettled(months.map((m) => fetchJson(`${DATA_BASE}/${m}.json`)));
-  const records = results
-    .filter((r) => r.status === "fulfilled")
-    .flatMap((r) => r.value);
+  const records = source === "summary"
+    ? await loadSummary()
+    : await loadRawHistory(from, now);
 
   return records
     .filter((r) => new Date(r.timestamp) >= from)
     .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+}
+
+async function loadRawHistory(from, now) {
+  const months = monthsBetween(from, now);
+  const results = await Promise.allSettled(
+    months.map((m) => fetchNdjson(`${DATA_BASE}/${m}.ndjson`))
+  );
+  return results
+    .filter((r) => r.status === "fulfilled")
+    .flatMap((r) => r.value);
+}
+
+async function loadSummary() {
+  const summary = await fetchJson(`${DATA_BASE}/summary.json`);
+  return summary.points ?? [];
 }
 
 function downsample(records, maxPoints) {
