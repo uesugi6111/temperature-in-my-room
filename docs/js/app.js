@@ -8,9 +8,9 @@ const els = {
 };
 
 const RANGE_CONFIG = {
-  "24h": { hours: 24 },
-  "7d": { hours: 24 * 7 },
-  "30d": { hours: 24 * 30 },
+  "24h": { hours: 24, unit: "hour", maxPoints: 300 },
+  "7d": { hours: 24 * 7, unit: "day", maxPoints: 400 },
+  "30d": { hours: 24 * 30, unit: "day", maxPoints: 500 },
 };
 
 let chart = null;
@@ -18,7 +18,7 @@ let currentRange = "24h";
 
 function formatDateTime(isoString) {
   const date = new Date(isoString);
-  return date.toLocaleString("ja-JP", { hour12: false });
+  return date.toLocaleString("ja-JP", { hour12: false, timeZone: "Asia/Tokyo" });
 }
 
 async function fetchJson(path) {
@@ -69,7 +69,15 @@ async function loadHistory(range) {
     .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 }
 
-function renderChart(records) {
+function downsample(records, maxPoints) {
+  if (records.length <= maxPoints) {
+    return records;
+  }
+  const step = Math.ceil(records.length / maxPoints);
+  return records.filter((_, i) => i % step === 0);
+}
+
+function renderChart(records, unit) {
   const labels = records.map((r) => r.timestamp);
   const temperatureData = records.map((r) => r.temperature);
   const humidityData = records.map((r) => r.humidity);
@@ -113,7 +121,7 @@ function renderChart(records) {
       scales: {
         x: {
           type: "time",
-          time: { unit: "hour" },
+          time: { unit },
         },
         yTemp: {
           type: "linear",
@@ -133,8 +141,21 @@ function renderChart(records) {
 
 async function updateChart(range) {
   currentRange = range;
-  const records = await loadHistory(range);
-  renderChart(records);
+  const { unit, maxPoints } = RANGE_CONFIG[range];
+  const emptyMessage = document.getElementById("chart-empty");
+  try {
+    const records = downsample(await loadHistory(range), maxPoints);
+    if (emptyMessage) {
+      emptyMessage.hidden = records.length > 0;
+    }
+    renderChart(records, unit);
+  } catch (err) {
+    console.error(err);
+    if (emptyMessage) {
+      emptyMessage.textContent = "履歴データの取得に失敗しました";
+      emptyMessage.hidden = false;
+    }
+  }
 }
 
 document.querySelectorAll(".range-buttons button").forEach((btn) => {
