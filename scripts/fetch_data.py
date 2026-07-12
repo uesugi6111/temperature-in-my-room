@@ -12,10 +12,25 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 API_BASE = "https://api.switch-bot.com/v1.1"
 JST = timezone(timedelta(hours=9))
 DATA_DIR = Path(__file__).resolve().parent.parent / "docs" / "data"
+
+
+def build_session() -> requests.Session:
+    session = requests.Session()
+    retry = Retry(
+        total=3,
+        backoff_factor=1,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=frozenset(["GET"]),
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    return session
 
 
 def build_headers(token: str, secret: str) -> dict:
@@ -37,7 +52,8 @@ def build_headers(token: str, secret: str) -> dict:
 def fetch_status(token: str, secret: str, device_id: str) -> dict:
     url = f"{API_BASE}/devices/{device_id}/status"
     headers = build_headers(token, secret)
-    resp = requests.get(url, headers=headers, timeout=10)
+    session = build_session()
+    resp = session.get(url, headers=headers, timeout=10)
     resp.raise_for_status()
     payload = resp.json()
     if payload.get("statusCode") != 100:
