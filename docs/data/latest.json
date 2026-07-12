@@ -1,6 +1,6 @@
 {
-  "timestamp": null,
-  "temperature": null,
-  "humidity": null,
-  "battery": null
+  "timestamp": "2026-07-12T14:44:08+09:00",
+  "temperature": 25,
+  "humidity": 53,
+  "battery": 100
 }
