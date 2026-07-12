@@ -152,6 +152,8 @@ function renderChart(records, unit) {
           type: "linear",
           position: "left",
           title: { display: true, text: "気温 (°C)" },
+          suggestedMin: 0,
+          suggestedMax: 40,
         },
         yHumidity: {
           type: "linear",
