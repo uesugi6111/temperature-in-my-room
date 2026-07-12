@@ -159,6 +159,8 @@ function renderChart(records, unit) {
           type: "linear",
           position: "right",
           title: { display: true, text: "湿度 (%)" },
+          suggestedMin: 0,
+          suggestedMax: 100,
           grid: { drawOnChartArea: false },
         },
       },
