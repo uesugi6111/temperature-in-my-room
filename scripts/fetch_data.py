@@ -107,6 +107,9 @@ def update_summary(record: dict, now: datetime) -> None:
     summary["updated"] = now.isoformat(timespec="seconds")
     summary["points"] = points
     SUMMARY_PATH.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def main() -> int:
     token = os.environ.get("SWITCHBOT_TOKEN")
     secret = os.environ.get("SWITCHBOT_SECRET")
     device_id = os.environ.get("SWITCHBOT_DEVICE_ID")
