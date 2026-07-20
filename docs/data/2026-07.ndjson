@@ -308,3 +308,4 @@
 {"timestamp": "2026-07-21T03:12:03+09:00", "temperature": 24.1, "humidity": 53, "battery": 100}
 {"timestamp": "2026-07-21T03:54:14+09:00", "temperature": 24, "humidity": 53, "battery": 100}
 {"timestamp": "2026-07-21T04:31:01+09:00", "temperature": 23.9, "humidity": 53, "battery": 100}
+{"timestamp": "2026-07-21T05:12:57+09:00", "temperature": 24, "humidity": 54, "battery": 100}
