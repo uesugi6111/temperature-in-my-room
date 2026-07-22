@@ -1,6 +1,6 @@
 {
   "unit": "hour",
-  "updated": "2026-07-22T22:30:57+09:00",
+  "updated": "2026-07-22T23:27:19+09:00",
   "points": [
     {
       "timestamp": "2026-07-12T14:00:00+09:00",
@@ -1410,6 +1410,12 @@
       "timestamp": "2026-07-22T22:00:00+09:00",
       "temperature": 24.6,
       "humidity": 54.0,
+      "count": 1
+    },
+    {
+      "timestamp": "2026-07-22T23:00:00+09:00",
+      "temperature": 24.5,
+      "humidity": 53.0,
       "count": 1
     }
   ]
