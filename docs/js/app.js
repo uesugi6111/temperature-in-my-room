@@ -133,6 +133,7 @@ function renderChart(records, unit) {
 
   if (chart) {
     chart.data = data;
+    chart.options.scales.x.time.unit = unit;
     chart.update();
     return;
   }
@@ -146,7 +147,20 @@ function renderChart(records, unit) {
       scales: {
         x: {
           type: "time",
-          time: { unit },
+          time: {
+            unit,
+            tooltipFormat: "yyyy/MM/dd HH:mm",
+            displayFormats: {
+              hour: "M/d HH:mm",
+              day: "M/d",
+            },
+          },
+          ticks: {
+            maxRotation: 0,
+            autoSkip: true,
+            autoSkipPadding: 12,
+            major: { enabled: true },
+          },
         },
         yTemp: {
           type: "linear",
