@@ -100,3 +100,4 @@
 {"timestamp": "2026-08-03T18:23:56+09:00", "temperature": 23.7, "humidity": 54, "battery": 100}
 {"timestamp": "2026-08-03T19:43:58+09:00", "temperature": 23.6, "humidity": 54, "battery": 100}
 {"timestamp": "2026-08-03T20:57:00+09:00", "temperature": 23.7, "humidity": 54, "battery": 100}
+{"timestamp": "2026-08-03T22:06:03+09:00", "temperature": 23.6, "humidity": 54, "battery": 100}
