@@ -41,3 +41,4 @@
 {"timestamp": "2026-10-09T11:20:50+09:00", "temperature": 23.3, "humidity": 53, "battery": 100}
 {"timestamp": "2026-10-09T18:20:59+09:00", "temperature": 23.2, "humidity": 55, "battery": 100}
 {"timestamp": "2026-10-10T01:23:21+09:00", "temperature": 23.2, "humidity": 56, "battery": 100}
+{"timestamp": "2026-10-10T06:03:19+09:00", "temperature": 23.1, "humidity": 56, "battery": 100}
