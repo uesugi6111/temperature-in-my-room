@@ -1,25 +1,7 @@
 {
   "unit": "hour",
-  "updated": "2026-11-04T06:15:00+09:00",
+  "updated": "2026-11-04T10:22:33+09:00",
   "points": [
-    {
-      "timestamp": "2026-08-06T07:00:00+09:00",
-      "temperature": 23.7,
-      "humidity": 59.0,
-      "count": 1
-    },
-    {
-      "timestamp": "2026-08-06T08:00:00+09:00",
-      "temperature": 23.5,
-      "humidity": 58.0,
-      "count": 1
-    },
-    {
-      "timestamp": "2026-08-06T09:00:00+09:00",
-      "temperature": 23.6,
-      "humidity": 57.0,
-      "count": 1
-    },
     {
       "timestamp": "2026-08-06T12:00:00+09:00",
       "temperature": 24.0,
@@ -5099,6 +5081,12 @@
     {
       "timestamp": "2026-11-04T06:00:00+09:00",
       "temperature": 23.5,
+      "humidity": 39.0,
+      "count": 1
+    },
+    {
+      "timestamp": "2026-11-04T10:00:00+09:00",
+      "temperature": 23.1,
       "humidity": 39.0,
       "count": 1
     }
