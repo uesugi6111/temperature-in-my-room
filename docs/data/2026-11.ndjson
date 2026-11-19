@@ -72,3 +72,4 @@
 {"timestamp": "2026-11-19T03:22:15+09:00", "temperature": 24.9, "humidity": 43, "battery": 100}
 {"timestamp": "2026-11-19T09:34:46+09:00", "temperature": 24.4, "humidity": 37, "battery": 100}
 {"timestamp": "2026-11-19T16:54:49+09:00", "temperature": 24.5, "humidity": 30, "battery": 100}
+{"timestamp": "2026-11-20T01:54:45+09:00", "temperature": 24.5, "humidity": 29, "battery": 100}
