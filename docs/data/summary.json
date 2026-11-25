@@ -1,13 +1,7 @@
 {
   "unit": "hour",
-  "updated": "2026-11-25T11:39:25+09:00",
+  "updated": "2026-11-25T20:42:30+09:00",
   "points": [
-    {
-      "timestamp": "2026-08-27T14:00:00+09:00",
-      "temperature": 24.0,
-      "humidity": 55.0,
-      "count": 1
-    },
     {
       "timestamp": "2026-08-28T01:00:00+09:00",
       "temperature": 23.9,
@@ -2884,6 +2878,12 @@
     },
     {
       "timestamp": "2026-11-25T11:00:00+09:00",
+      "temperature": 23.9,
+      "humidity": 23.0,
+      "count": 1
+    },
+    {
+      "timestamp": "2026-11-25T20:00:00+09:00",
       "temperature": 23.9,
       "humidity": 23.0,
       "count": 1
